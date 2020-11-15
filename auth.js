@@ -12,11 +12,26 @@ const signUp = async  (firstName, lastName, email, newPassword, confirmPassword)
         password: newPassword
       }
 
-      return addUser(user)
+      addUser(user)
+      location.href = './login.html'
     }else{
-      return alert('Please confirm to make sure your password matches!')
+      alert('Please confirm to make sure your password matches!')
     }
   }else{
-    return alert('This email is already bee used!')
+    alert('This email is already bee used!')
+  }
+}
+
+const signIn = async (email, password) => {
+  const user = await getUser(email)
+
+  if(user){
+    if(password === user.password){
+      location.href = './home.html'
+    }else{
+      alert('Please make sure your credentials are correct')
+    }
+  }else{
+    alert('This user is not registered, please create an account')
   }
 }
